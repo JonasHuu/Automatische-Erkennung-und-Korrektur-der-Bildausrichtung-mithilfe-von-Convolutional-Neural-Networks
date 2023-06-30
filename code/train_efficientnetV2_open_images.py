@@ -3,7 +3,7 @@ import os
 import sys
 import random
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard, ReduceLROnPlateau
-from tensorflow.keras.applications import EfficientNetB0
+#from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2B0
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import Model
 from keras.layers import Dense, Flatten
@@ -22,7 +22,7 @@ validation_filenames = [prefix_validate + i for i in validation_filenames]
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import load_model
 
-model_name = 'efficientnet_open_images'
+model_name = 'efficientnetv2_sv_open_images'
 # training parameters
 batch_size = 64
 nb_epoch = 50
@@ -33,15 +33,14 @@ if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 # load base model
-base_model = EfficientNetB0(weights='imagenet', include_top=False,
-                      input_shape=input_shape)
+model = load_model('./models_sv/efficientnet_street_view.hdf5', custom_objects={'angle_error': angle_error})
 # append classification layer
-x = base_model.output
-x = Flatten()(x)
-final_output = Dense(360, activation='softmax', name='fc360')(x)
+#x = base_model.output
+#x = Flatten()(x)
+#final_output = Dense(360, activation='softmax', name='fc360')(x)
 
 # create the new model
-model = Model(inputs=base_model.input, outputs=final_output)
+#model = Model(inputs=base_model.input, outputs=final_output)
 
 model.summary()
 # model compilation
