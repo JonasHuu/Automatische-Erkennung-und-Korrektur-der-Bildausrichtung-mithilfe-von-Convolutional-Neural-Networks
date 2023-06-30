@@ -7,6 +7,7 @@ pip install -r requirements.txt
 ## The following commands can also be used to train ResNetV2 and DenseNet201
 ### Train EfficientnetV2 with google street view images
 cd Train_street
+
 python3 ./code/train_EfficientnetV2_street_view.py
 ### Train EfficientnetV2 with Open Images
 cd Train_OI
