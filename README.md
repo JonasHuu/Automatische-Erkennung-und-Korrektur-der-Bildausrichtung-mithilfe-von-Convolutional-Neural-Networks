@@ -1,6 +1,8 @@
 # Bachelorarbeit-Jonas-Huurdeman
-Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks
-
+Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks <br>
+The following description explains how to train EfficientnetV2, evaluate it and also how to use the implemented app.
+There are more scripts that were created in order to e.g. convert .csv files to .txt files and download test files but are not necessary for testing the code.
+How they can be used will be explained below.
 ### Load required modules
 pip install -r requirements.txt
 
@@ -29,3 +31,13 @@ python .\code\test_model.py -m './models/efficientnetv2_sv_open_images.hdf5' -t 
 copy efficientnetv2_sv_open_images.hdf5 to ./app/model
 cd ./app
 python3 ./GUI.py
+
+## Further scripts
+#### csv_to_txt.py
+Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
+can use it to download the images by ID. The paths are hardcoded.
+#### create_tests.py
+This script has been used to create visual evaluations of a model using testdata. In order to use it for own purposes one needs to modify the paths used in the script.
+#### download_unsplashed.py
+The script downloads 1000 random unsplash images from the .tsv file. It then writes them into ./data/unsplashed_images/ <br>
+The images can be used for testing purposes
