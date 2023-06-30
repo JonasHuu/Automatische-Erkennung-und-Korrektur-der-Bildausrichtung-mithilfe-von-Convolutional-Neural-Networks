@@ -18,8 +18,9 @@ python3 ./code/train_efficientnetV2_open_images.py
 
 ### Download pretrained EfficientnetV2
 https://drive.google.com/file/d/1VlRecLAzn3R9CUO3k2ArP_ERkihXuaOj/view?usp=sharing <br>
--> After that you can copy it wherever needed
+
 ### Evaluate EfficientnetV2
+copy efficientnetv2_sv_open_images.hdf5 to ./models
 Replace '/path/to/test/images' to actual path, test_num to the number of test images and 'EfficientnetV2_sv_oi_hc' to the name you want
 your output files names to start with:
 python .\code\test_model.py -m './models/efficientnetv2_sv_open_images.hdf5' -t '/path/to/test/images' -n test_num -o 'EfficientnetV2_sv_oi_hc'
