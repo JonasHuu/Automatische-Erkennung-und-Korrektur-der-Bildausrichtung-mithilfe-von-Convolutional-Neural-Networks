@@ -16,9 +16,9 @@ python3 ./code/downloader.py ./code/validate.txt --download_folder=./data/train 
 #### Start the training
 python3 ./code/train_efficientnetV2_open_images.py
 
-### Download completely trained EfficientnetV2
-https://drive.google.com/file/d/1VlRecLAzn3R9CUO3k2ArP_ERkihXuaOj/view?usp=sharing
-
+### Download pretrained EfficientnetV2
+https://drive.google.com/file/d/1VlRecLAzn3R9CUO3k2ArP_ERkihXuaOj/view?usp=sharing <br>
+-> After that you can copy it wherever needed
 ### Evaluate EfficientnetV2
 Replace '/path/to/test/images' to actual path, test_num to the number of test images and 'EfficientnetV2_sv_oi_hc' to the name you want
 your output files names to start with:
