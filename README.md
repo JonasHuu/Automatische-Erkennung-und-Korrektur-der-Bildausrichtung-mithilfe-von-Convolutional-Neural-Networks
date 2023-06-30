@@ -1,6 +1,6 @@
 # Bachelorarbeit-Jonas-Huurdeman
 Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks
-
+C:\Users\jonas\AppData\Local\Programs\Python\Python311\python.exe
 ### Load required modules
 pip install -r requirements.txt
 
@@ -16,7 +16,7 @@ python3 ./code/downloader.py ./code/validate.txt --download_folder=./data/train 
 #### Start the training
 python3 ./code/train_efficientnetV2_open_images.py
 
-### Download completely trained EfficientnetV2 
+### Download completely trained EfficientnetV2
 https://drive.google.com/file/d/1VlRecLAzn3R9CUO3k2ArP_ERkihXuaOj/view?usp=sharing
 
 ### Evaluate EfficientnetV2
