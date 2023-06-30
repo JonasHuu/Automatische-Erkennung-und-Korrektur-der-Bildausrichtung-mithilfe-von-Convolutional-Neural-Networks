@@ -30,7 +30,7 @@ print(len(validation_filenames), 'validation samples')
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import load_model
 
-model_name = 'efficientnet_street_view'
+model_name = 'efficientnetv2_street_view'
 # training parameters
 batch_size = 64
 nb_epoch = 50
