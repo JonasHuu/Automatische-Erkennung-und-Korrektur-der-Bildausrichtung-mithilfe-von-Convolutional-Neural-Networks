@@ -1,6 +1,6 @@
 # Bachelorarbeit-Jonas-Huurdeman
 Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks
-C:\Users\jonas\AppData\Local\Programs\Python\Python311\python.exe
+
 ### Load required modules
 pip install -r requirements.txt
 
