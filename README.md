@@ -1,8 +1,9 @@
 # Bachelorarbeit-Jonas-Huurdeman
-Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks <br>
-The following description explains how to train EfficientnetV2, evaluate it and also how to use the implemented app.
-There are more scripts that were created in order to e.g. convert .csv files to .txt files and download test files but are not necessary for testing the code.
-How they can be used will be explained below.
+Automatic detection and correction of image orientation using Convolutional Neural Networks (CNNs) <br>
+
+The following description explains how to train the CNN EfficientnetV2, evaluate it and also how to use the implemented app.
+There are more scripts that were created in order to e.g. convert .csv files to .txt files and download test files but those are not necessary for testing the code.
+The usage of them will be explained below.
 ### Load required modules
 pip install -r requirements.txt
 
