@@ -69,7 +69,7 @@ class Autocorrect(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         # load the .ui file
-        uic.loadUi("autocorrect_dialog1.ui", self)
+        uic.loadUi("autocorrect_dialog.ui", self)
         
         
         # connect buttons
