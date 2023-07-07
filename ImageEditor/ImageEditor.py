@@ -39,6 +39,162 @@ class Dialog(QtWidgets.QDialog):
 
     def is_remove_black_borders_checked(self):
         return self.checkbox.isChecked()
+class CorrectRotationThread(QThread):
+    rotation_completed = pyqtSignal()
+
+    def __init__(self, selected_files, output_folder, model, parent=None):
+        super().__init__(parent)
+        self.selected_files = selected_files
+        self.output_folder = output_folder
+        self.model = model
+        self.running = True
+
+    def quit(self):
+        self.running = False
+        super().quit()
+
+    def run(self):
+        output_path = self.output_folder
+        file_path = self.selected_files
+
+        if self.model is None:
+            self.model = load_model('./model/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
+
+        process_images(self.model, self.selected_files, output_path, batch_size=64, crop=True)
+
+        if self.running:
+            self.rotation_completed.emit()
+# load previous app so it can be reused as a dialog
+class Autocorrect(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        # load the .ui file
+        uic.loadUi("autocorrect_dialog1.ui", self)
+        
+        
+        # connect buttons
+        self.file_button.clicked.connect(self.select_files)
+        self.folder_button.clicked.connect(self.select_folder)
+        self.output_folder_button.clicked.connect(self.select_output_folder)
+        self.folder_button.clicked.connect(self.load_model_thread)
+        self.file_button.clicked.connect(self.load_model_thread)
+        self.correct_rotation_button.clicked.connect(self.start_rotation_correction)
+        self.correct_rotation_button.clicked.connect(self.button_click)
+        # Initialize variables
+        self.selected_files = []
+        self.output_folder = ""
+    def button_click(self):
+        pass
+    def center_window(self):
+        frame_geometry = self.frameGeometry()
+        center_point = QApplication.primaryScreen().availableGeometry().center()
+        frame_geometry.moveCenter(center_point)
+        self.move(frame_geometry.topLeft())
+    
+    def select_files(self):
+        options = QFileDialog()
+        options = options.options()
+        options |= QFileDialog.Option.DontUseNativeDialog
+        file_dialog = QFileDialog()
+
+        # Open the file dialog and allow the user to select multiple files or a folder
+        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
+        file_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
+        file_dialog.setOption(QFileDialog.Option.ReadOnly, True)
+        file_names, _ = file_dialog.getOpenFileNames(
+            self,
+            "Select Files",
+            "",
+            "Images (*.png *.bmp *.jpg *.jpeg)",
+            options=options,
+        )
+
+        # Check if any files or folder were selected
+        if file_names:
+            self.selected_files = file_names
+            self.file_label.setText("Erfolgreich {} Datei/en ausgewählt".format(len(file_names)))
+        self.model = None
+
+    def select_folder(self):
+        options = QFileDialog()
+        options = options.options()
+        options |= QFileDialog.Option.DontUseNativeDialog
+        file_dialog = QFileDialog()
+
+        # Open the file dialog and allow the user to select a folder
+        file_dialog.setFileMode(QFileDialog.FileMode.Directory) 
+        file_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
+        file_dialog.setOption(QFileDialog.Option.ReadOnly, True)
+        folder = file_dialog.getExistingDirectory(
+            self,
+            "Select Folder",
+            options=options
+        )
+
+        # Check if any files or folder were selected
+        if folder:
+            self.selected_files = folder  # Store the selected folder as a list
+            self.file_label.setText("Erfolgreich einen Ordner ausgewählt")
+    def select_output_folder(self):
+        options = QFileDialog()
+        options = options.options()
+        options |= QFileDialog.Option.DontUseNativeDialog
+        file_dialog = QFileDialog()
+
+        # Open the file dialog and allow the user to select the output folder
+        output_folder = file_dialog.getExistingDirectory(
+            self, "Ordner auswählen", options=options
+        )
+
+        # Check if an output folder was selected
+        if output_folder:
+            self.output_folder = output_folder
+            self.output_folder_label.setText("Ausgewählter Ausgabeordner: {}".format(output_folder[:10]))
+    def load_model_thread(self):
+        model_path = './model/efficientnetv2_sv_open_images.hdf5'  
+        #model_path = './rotnet_open_images_resnet50_TCML_2.hdf5'
+        # Create a thread to load the model
+        self.model_thread = LoadModelThread(model_path)
+        self.model_thread.model_loaded.connect(self.model_loaded)
+        self.model_thread.start()
+    def model_loaded(self, model_location):
+        self.model = model_location
+    def start_rotation_correction(self):
+        # Disable the button during the process
+        self.correct_rotation_button.setEnabled(False)
+
+        # Create and configure the progress dialog
+        progress_dialog = QProgressDialog(self)
+        progress_dialog.setWindowTitle("Bildorientierung korrigieren")
+        progress_dialog.setLabelText("Bild/er werden verarbeitet...")
+        progress_dialog.setCancelButtonText("Abbrechen")
+        progress_dialog.setWindowModality(Qt.WindowModality.ApplicationModal)
+        progress_dialog.setRange(0, 0)  # Indeterminate progress
+        progress_dialog.show()
+
+        # Start the rotation correction in a separate thread
+        self.rotation_thread = CorrectRotationThread(self.selected_files, self.output_folder, self.model)
+        self.rotation_thread.started.connect(progress_dialog.show)
+        self.rotation_thread.finished.connect(progress_dialog.close)
+        self.rotation_thread.rotation_completed.connect(self.rotation_completed)
+        self.rotation_thread.finished.connect(lambda: self.correct_rotation_button.setEnabled(True))
+        self.rotation_thread.start()
+
+    def rotation_completed(self):
+        self.output_label.setText("Bildorientierung erfolgreich korrigiert!")
+
+        # Reset the selected files and output folder
+        self.selected_files = []
+        self.output_folder = ""
+        self.file_label.setText("Keine Dateien ausgewählt")
+        self.output_folder_label.setText("Kein Ausgabeordner ausgewählt")
+
+    def closeEvent(self, event):
+        if hasattr(self, "rotation_thread") and self.rotation_thread.isRunning():
+            self.rotation_thread.stop()
+            self.rotation_thread.wait()
+        event.accept()
+
 class LoadModelThread(QThread):
     model_loaded = pyqtSignal(object)
 
@@ -57,7 +213,7 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi("form.ui", self)
         
         # Connect signals and slots
-        #self.autocorrectButton.clicked.connect(self.autocorrect)
+        self.autocorrectButton.clicked.connect(self.autocorrect)
         self.open_button.triggered.connect(self.load_image)
         self.open_button.triggered.connect(self.load_model_thread)
         self.correct_rotation_button.clicked.connect(self.correct_rotation)
@@ -162,6 +318,9 @@ class MainWindow(QtWidgets.QMainWindow):
             transform.rotate(self.rotation_angle_orig)
             original_pixmap = QPixmap.fromImage(self.original_image.transformed(transform))
             self.original_label.setPixmap(original_pixmap.scaled(400, 400, Qt.AspectRatioMode.KeepAspectRatio))
+    def autocorrect(self):
+        window = Autocorrect(self)
+        window.show()
 
     def save_rotated_image(self):
         if self.rotated_image is not None:
