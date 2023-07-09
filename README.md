@@ -33,6 +33,10 @@ copy efficientnetv2_sv_open_images.hdf5 to ./app/model
 cd ./app
 python3 ./GUI.py
 
+## download the app as a .exe
+https://drive.google.com/file/d/1bwlooI2XNT24K1zdbXNVOaGXtcrDuYQW/view?usp=sharing
+After the download is done, it needs to be extracted. The executable is called
+Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it from anywhere.
 ## Further scripts
 #### csv_to_txt.py
 Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
