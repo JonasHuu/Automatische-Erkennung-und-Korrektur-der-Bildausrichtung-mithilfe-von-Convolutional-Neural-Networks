@@ -33,7 +33,12 @@ copy efficientnetv2_sv_open_images.hdf5 to ./app/model
 cd ./app
 python3 ./GUI.py
 
-## download the app as a .exe
+## Use the Image Editor app
+copy efficientnetv2_sv_open_images.hdf5 to ./ImageEditor/model
+cd ./ImageEditor
+python3 ImageEditor.py
+
+## Download and use the Image Editor app as a .exe
 https://drive.google.com/file/d/1bwlooI2XNT24K1zdbXNVOaGXtcrDuYQW/view?usp=sharing <br>
 After the download is done, it needs to be extracted. The executable is called
 Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it from anywhere.
