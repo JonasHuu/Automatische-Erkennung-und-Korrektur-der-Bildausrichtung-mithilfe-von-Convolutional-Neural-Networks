@@ -267,11 +267,22 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def correct_rotation(self):
         if self.original_image is not None:
-            if self.model == None:
+            progress_dialog = QProgressDialog(self)
+            progress_dialog.setWindowTitle("Bildorientierung korrigieren")
+            progress_dialog.setLabelText("Bild verarbeiten...")
+            progress_dialog.setCancelButtonText("Abbrechen")
+            progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
+            progress_dialog.setRange(0, 0)  # Indeterminate progress
+            progress_dialog.show()
+
+            QCoreApplication.processEvents()  # Allow the progress dialog to be displayed
+
+            if self.model is None:
                 self.model = load_model('./model/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
+
             transform = QTransform()
             predictions = self.model.predict(
-            RotNetDataGenerator(
+                RotNetDataGenerator(
                     self.filename,
                     input_shape=(224, 224, 3),
                     batch_size=64,
@@ -280,13 +291,15 @@ class MainWindow(QtWidgets.QMainWindow):
                     rotate=True,
                     crop_largest_rect=True,
                     crop_center=True,
-                    angle = self.rotation_angle_orig
+                    angle=self.rotation_angle_orig
                 )
             )
             self.rotation_angle = np.argmax(predictions, axis=1) - self.rotation_angle_orig
             transform.rotate(self.rotation_angle)
             self.rotated_image = self.original_image.transformed(transform)
             self.display_images()
+
+            progress_dialog.close()
     def load_model_thread(self):
         model_path = './model/efficientnetv2_sv_open_images.hdf5'  
         #model_path = './rotnet_open_images_resnet50_TCML_2.hdf5'
@@ -330,13 +343,18 @@ class MainWindow(QtWidgets.QMainWindow):
 
                 file_dialog = QFileDialog()
                 file_dialog.setAcceptMode(QFileDialog.AcceptMode.AcceptSave)
+                file_dialog.setDefaultSuffix("png")
+                #file_dialog.setNameFilter("Images (*.png *.jpeg *.jpg *.bmp)")
                 if file_dialog.exec() == QFileDialog.DialogCode.Accepted:
                     filenames = file_dialog.selectedFiles()
                     if filenames:
                         filename = filenames[0]
                         if self.remove_black_border:
                             image = cv2.imread(self.filename[0])
-                            a = self.rotation_angle[0]
+                            if isinstance(self.rotation_angle,int):
+                                a = self.rotation_angle
+                            else:
+                                a = self.rotation_angle[0]
                             height, width = image.shape[:2]
                             if width < height:
                                 height = width
