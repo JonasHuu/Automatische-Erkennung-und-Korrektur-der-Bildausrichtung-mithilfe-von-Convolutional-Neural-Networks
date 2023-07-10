@@ -39,7 +39,7 @@ cd ./ImageEditor
 python3 ImageEditor.py
 
 ## Download and use the Image Editor app as a .exe
-https://drive.google.com/file/d/1bwlooI2XNT24K1zdbXNVOaGXtcrDuYQW/view?usp=sharing <br>
+https://drive.google.com/file/d/1ce1ldBeR8z0D7E-dnk_AlHVWla1NJWy6/view?usp=sharing <br>
 After the download is done, it needs to be extracted. The executable is called
 Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it from anywhere.
 ## Further scripts
