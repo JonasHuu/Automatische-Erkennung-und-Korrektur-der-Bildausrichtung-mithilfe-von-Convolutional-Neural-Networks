@@ -23,88 +23,7 @@ from PyQt6.QtWidgets import (
     QCheckBox
 )
 import qdarktheme
-dark_theme = """
-    QWidget {
-        background-color: #333333;
-        color: #ffffff;
-        border: none;
-    }
-    QPushButton {
-        background-color: #4d4d4d;
-        border: 1px solid #4d4d4d;
-        border-radius: 4px;
-        color: #ffffff;
-        padding: 5px;
-    }
-    QPushButton:hover {
-        background-color: #5a5a5a;
-        border: 1px solid #5a5a5a;
-    }
-    QCheckBox {
-        color: #ffffff;
-    }
-    QLineEdit {
-        background-color: #4d4d4d;
-        border: 1px solid #4d4d4d;
-        color: #ffffff;
-        padding: 5px;
-    }
-    QTextEdit {
-        background-color: #4d4d4d;
-        border: 1px solid #4d4d4d;
-        color: #ffffff;
-        padding: 5px;
-    }
-    QProgressBar {
-        border: 1px solid #444444;
-        border-radius: 7px;
-        background-color: #2e2e2e;
-        text-align: center;
-        font-size: 10pt;
-        color: white;
-    }
-    QProgressBar::chunk {
-        background-color: #3a3a3a;
-        width: 5px;
-    }
-    QScrollBar:vertical {
-        border: none;
-        background-color: #3a3a3a;
-        width: 10px;
-        margin: 16px 0 16px 0;
-    }
-    QScrollBar::handle:vertical {
-        background-color: #444444;
-        border-radius: 5px;
-    }
-    QScrollBar:horizontal {
-        border: none;
-        background-color: #3a3a3a;
-        height: 10px;
-        margin: 0px 16px 0 16px;
-    }
-    QScrollBar::handle:horizontal {
-        background-color: #444444;
-        border-radius: 5px;
-    }
-    QTabWidget {
-        background-color: #2e2e2e;
-        border: none;
-    }
-    QTabBar::tab {
-        background-color: #2e2e2e;
-        color: #b1b1b1;
-        padding: 8px 20px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-        border: none;
-    }
 
-    QTabBar::tab:selected, QTabBar::tab:hover {
-        background-color: #3a3a3a;
-        color: white;
-    }
-"""
 class Dialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -410,12 +329,13 @@ class MainWindow(QtWidgets.QMainWindow):
             self.rotation_thread = CorrectRotationThread_main(self.filename, self.rotation_angle_orig,self.model)
             self.rotation_thread.started.connect(progress_dialog.show)
             self.rotation_thread.finished.connect(progress_dialog.close)
+            self.rotation_thread.rotation_completed.connect(self.rotation_completed)
             self.rotation_thread.finished.connect(lambda: self.correct_rotation_button.setEnabled(True))
             self.rotation_thread.start()
             #if self.model is None:
             #    self.model = load_model('./model/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
 
-            transform = QTransform()
+            
             '''
             predictions = self.model.predict(
                 RotNetDataGenerator(
@@ -432,11 +352,13 @@ class MainWindow(QtWidgets.QMainWindow):
             )
             self.rotation_angle = np.argmax(predictions, axis=1) - self.rotation_angle_orig
             '''
-            transform.rotate(self.rotation_thread.rotation_angle)
-            self.rotated_image = self.original_image.transformed(transform)
-            self.display_images()
-
             progress_dialog.close()
+    def rotation_completed(self):
+        transform = QTransform()
+        transform.rotate(self.rotation_thread.rotation_angle)
+        self.rotated_image = self.original_image.transformed(transform)
+        self.display_images()
+        
     def load_model_thread(self):
         model_path = './model/efficientnetv2_sv_open_images.hdf5'  
         #model_path = './rotnet_open_images_resnet50_TCML_2.hdf5'
