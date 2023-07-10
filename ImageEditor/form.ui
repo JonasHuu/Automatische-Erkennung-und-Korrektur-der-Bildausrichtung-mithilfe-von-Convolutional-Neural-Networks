@@ -123,12 +123,36 @@
     </property>
     <addaction name="open_button"/>
    </widget>
+   <widget class="QMenu" name="menuTheme">
+    <property name="title">
+     <string>Theme</string>
+    </property>
+    <addaction name="actionDark_mode"/>
+    <addaction name="actionLight_mode"/>
+    <addaction name="actionAuto"/>
+   </widget>
    <addaction name="menuDatei"/>
+   <addaction name="menuTheme"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="open_button">
    <property name="text">
     <string>Bild Öffnen</string>
+   </property>
+  </action>
+  <action name="actionDark_mode">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionLight_mode">
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionAuto">
+   <property name="text">
+    <string>Auto</string>
    </property>
   </action>
  </widget>
