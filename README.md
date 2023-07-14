@@ -21,7 +21,10 @@ python3 ./code/train_efficientnetV2_open_images.py
 
 ### Download pretrained EfficientnetV2
 https://drive.google.com/file/d/1VlRecLAzn3R9CUO3k2ArP_ERkihXuaOj/view?usp=sharing <br>
-
+### Download pretrained DenseNet201
+https://drive.google.com/file/d/10VlI_1dShRIOY77EiWAVKMxX8QbrsBzM/view?usp=sharing
+### Download pretrained ResNet50V2
+https://drive.google.com/file/d/1AY6WEFamnlGBoQBAwFwpjpdyxbtGSeh-/view?usp=sharing
 ### Evaluate EfficientnetV2
 copy efficientnetv2_sv_open_images.hdf5 to ./models
 Replace '/path/to/test/images' to actual path, test_num to the number of test images and 'EfficientnetV2_sv_oi_hc' to the name you want
