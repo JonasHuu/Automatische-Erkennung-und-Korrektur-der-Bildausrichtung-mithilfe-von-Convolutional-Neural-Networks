@@ -1,4 +1,5 @@
-# Bachelorarbeit-Jonas-Huurdeman
+# Bachelorarbeit-Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks
+
 Automatic detection and correction of image orientation using Convolutional Neural Networks (CNNs) <br>
 
 The following description explains how to train the CNN EfficientnetV2, evaluate it and also how to use the implemented app.
