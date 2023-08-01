@@ -1,4 +1,5 @@
-# Bachelorarbeit-Jonas-Huurdeman
+# Bachelorarbeit-Automatische Erkennung und Korrektur der Bildausrichtung mithilfe von Convolutional Neural Networks
+
 Automatic detection and correction of image orientation using Convolutional Neural Networks (CNNs) <br>
 
 The following description explains how to train the CNN EfficientnetV2, evaluate it and also how to use the implemented app.
@@ -52,5 +53,5 @@ can use it to download the images by ID. The paths are hardcoded.
 #### create_tests.py
 This script has been used to create visual evaluations of a model using testdata. In order to use it for own purposes one needs to modify the paths used in the script.
 #### download_unsplashed.py
-The script downloads 1000 random unsplash images from the .tsv file. It then writes them into ./data/unsplashed_images/ <br>
+The script downloads 1000 random unsplash images from the .tsv file using 32 parallel processes. It then writes them into ./data/unsplashed_images/ <br>
 The images can be used for testing purposes
