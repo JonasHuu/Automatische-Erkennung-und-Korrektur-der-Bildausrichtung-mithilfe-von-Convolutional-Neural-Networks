@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1105</width>
-    <height>652</height>
+    <height>649</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout">
+       <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0">
         <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
          <widget class="QLabel" name="original_label">
           <property name="layoutDirection">
@@ -33,17 +33,35 @@
          </widget>
         </item>
         <item>
-         <widget class="QSlider" name="horizontalSlider">
-          <property name="minimum">
-           <number>-180</number>
-          </property>
-          <property name="maximum">
-           <number>180</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="minusButton_2">
+            <property name="text">
+             <string>-90°</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider">
+            <property name="minimum">
+             <number>-180</number>
+            </property>
+            <property name="maximum">
+             <number>180</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="plusButton_2">
+            <property name="text">
+             <string>+90°</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QPushButton" name="correct_rotation_button">
@@ -55,7 +73,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0,0">
         <item alignment="Qt::AlignHCenter">
          <widget class="QLabel" name="rotated_label">
           <property name="text">
@@ -64,17 +82,44 @@
          </widget>
         </item>
         <item>
-         <widget class="QSlider" name="horizontalSlider_2">
-          <property name="minimum">
-           <number>-180</number>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+          <property name="spacing">
+           <number>2</number>
           </property>
-          <property name="maximum">
-           <number>180</number>
+          <property name="sizeConstraint">
+           <enum>QLayout::SetDefaultConstraint</enum>
           </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-         </widget>
+          <item alignment="Qt::AlignLeft">
+           <widget class="QPushButton" name="minusButton">
+            <property name="text">
+             <string>-90°</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="horizontalSlider_2">
+            <property name="minimum">
+             <number>-180</number>
+            </property>
+            <property name="maximum">
+             <number>180</number>
+            </property>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignRight">
+           <widget class="QPushButton" name="plusButton">
+            <property name="text">
+             <string>+90°</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item alignment="Qt::AlignHCenter">
          <widget class="QPushButton" name="save_button">
@@ -105,6 +150,22 @@
        </size>
       </property>
      </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>5</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
