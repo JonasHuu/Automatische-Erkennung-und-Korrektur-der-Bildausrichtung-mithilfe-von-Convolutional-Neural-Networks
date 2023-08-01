@@ -1,24 +1,15 @@
 import sys
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtWidgets
 from PyQt6 import uic
 from PyQt6.QtGui import QPixmap, QImage, QTransform
 import cv2
-import os
-
 from model.correct_rotation import *
-import os
 from keras.models import load_model
-from PyQt6.QtCore import Qt, QCoreApplication, QThread, pyqtSignal, QThreadPool
-from PyQt6.QtGui import QIcon, QMovie
+from PyQt6.QtCore import Qt, QThread, pyqtSignal
+from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import (
     QApplication,
     QFileDialog,
-    QLabel,
-    QMainWindow,
-    QPushButton,
-    QVBoxLayout,
-    QWidget,
-    QHBoxLayout,
     QProgressDialog,
     QCheckBox
 )
@@ -85,8 +76,6 @@ class CorrectRotationThread_main(QThread):
     def run(self):
         if self.model is None:
                 self.model = load_model('./model/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
-
-        #transform = QTransform()
         predictions = self.model.predict(
             RotNetDataGenerator(
                 self.filename,
@@ -110,21 +99,15 @@ class Autocorrect(QtWidgets.QMainWindow):
         super().__init__(parent)
         # load the .ui file
         uic.loadUi("autocorrect_dialog.ui", self)
-        
-        
         # connect buttons
         self.file_button.clicked.connect(self.select_files)
         self.folder_button.clicked.connect(self.select_folder)
         self.output_folder_button.clicked.connect(self.select_output_folder)
-        self.folder_button.clicked.connect(self.load_model_thread)
-        self.file_button.clicked.connect(self.load_model_thread)
         self.correct_rotation_button.clicked.connect(self.start_rotation_correction)
-        self.correct_rotation_button.clicked.connect(self.button_click)
         # Initialize variables
         self.selected_files = []
         self.output_folder = ""
-    def button_click(self):
-        pass
+        self.model = None
     def center_window(self):
         frame_geometry = self.frameGeometry()
         center_point = QApplication.primaryScreen().availableGeometry().center()
@@ -132,67 +115,40 @@ class Autocorrect(QtWidgets.QMainWindow):
         self.move(frame_geometry.topLeft())
     
     def select_files(self):
-        options = QFileDialog()
-        options = options.options()
-        options |= QFileDialog.Option.DontUseNativeDialog
         file_dialog = QFileDialog()
-
-        # Open the file dialog and allow the user to select multiple files or a folder
-        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)
-        file_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
-        file_dialog.setOption(QFileDialog.Option.ReadOnly, True)
-        file_names, _ = file_dialog.getOpenFileNames(
-            self,
-            "Select Files",
-            "",
-            "Images (*.png *.bmp *.jpg *.jpeg)",
-            options=options,
-        )
-
-        # Check if any files or folder were selected
-        if file_names:
-            self.selected_files = file_names
-            self.file_label.setText("Erfolgreich {} Datei/en ausgewählt".format(len(file_names)))
-        self.model = None
+        file_dialog.setFileMode(QFileDialog.FileMode.ExistingFiles)  # Allow multiple file selection
+        file_dialog.setNameFilter("Images (*.png *.xpm *.jpg *.bmp)")
+        if file_dialog.exec():
+            filenames = file_dialog.selectedFiles()
+            self.selected_files = filenames
+            if len(filenames) == 1:
+                self.file_label.setText("Erfolgreich {} Datei ausgewählt".format(len(filenames)))
+            else:
+                self.file_label.setText("Erfolgreich {} Dateien ausgewählt".format(len(filenames)))
+            
 
     def select_folder(self):
-        options = QFileDialog()
-        options = options.options()
-        options |= QFileDialog.Option.DontUseNativeDialog
         file_dialog = QFileDialog()
-
-        # Open the file dialog and allow the user to select a folder
-        file_dialog.setFileMode(QFileDialog.FileMode.Directory) 
+        file_dialog.setFileMode(QFileDialog.FileMode.Directory)
         file_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
         file_dialog.setOption(QFileDialog.Option.ReadOnly, True)
-        folder = file_dialog.getExistingDirectory(
-            self,
-            "Select Folder",
-            options=options
-        )
+        if file_dialog.exec():
+            folder = file_dialog.selectedFiles()
+            self.selected_files = folder[0]  # Store the selected folder as a list
+            self.file_label.setText("Ausgewählter Eingabeordner: ...{}".format(self.selected_files[len(self.selected_files)-20:]))
 
-        # Check if any files or folder were selected
-        if folder:
-            self.selected_files = folder  # Store the selected folder as a list
-            self.file_label.setText("Erfolgreich einen Ordner ausgewählt")
     def select_output_folder(self):
-        options = QFileDialog()
-        options = options.options()
-        options |= QFileDialog.Option.DontUseNativeDialog
         file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.FileMode.Directory)
+        file_dialog.setOption(QFileDialog.Option.ShowDirsOnly, True)
+        file_dialog.setOption(QFileDialog.Option.ReadOnly, True)
+        if file_dialog.exec():
+            output_folder = file_dialog.selectedFiles()
+            self.output_folder = output_folder[0]  # Store the selected folder as a list
+            self.output_folder_label.setText("Ausgewählter Ausgabeordner: ...{}".format(self.output_folder[len(self.output_folder)-20:]))
 
-        # Open the file dialog and allow the user to select the output folder
-        output_folder = file_dialog.getExistingDirectory(
-            self, "Ordner auswählen", options=options
-        )
-
-        # Check if an output folder was selected
-        if output_folder:
-            self.output_folder = output_folder
-            self.output_folder_label.setText("Ausgewählter Ausgabeordner: {}".format(output_folder[:10]))
     def load_model_thread(self):
         model_path = './model/efficientnetv2_sv_open_images.hdf5'  
-        #model_path = './rotnet_open_images_resnet50_TCML_2.hdf5'
         # Create a thread to load the model
         self.model_thread = LoadModelThread(model_path)
         self.model_thread.model_loaded.connect(self.model_loaded)
@@ -253,12 +209,20 @@ class MainWindow(QtWidgets.QMainWindow):
         uic.loadUi("form.ui", self)
         # Connect signals and slots
         self.autocorrectButton.clicked.connect(self.autocorrect)
+        self.autocorrectButton.clicked.connect(self.load_model_thread)
         self.open_button.triggered.connect(self.load_image)
-        self.open_button.triggered.connect(self.load_model_thread)
+        self.menuDatei.triggered.connect(self.load_model_thread)
         self.correct_rotation_button.clicked.connect(self.correct_rotation)
         self.save_button.clicked.connect(self.save_rotated_image)
         self.horizontalSlider_2.valueChanged.connect(self.update_rotation)
         self.horizontalSlider.valueChanged.connect(self.update_rotation_orig)
+
+        self.plusButton_2.clicked.connect(self.rotate_button_plus_orig)
+        self.minusButton_2.clicked.connect(self.rotate_button_minus_orig)
+
+        self.plusButton.clicked.connect(self.rotate_button_plus)
+        self.minusButton.clicked.connect(self.rotate_button_minus)
+
         self.actionDark_mode.triggered.connect(self.change_dark_mode)
         self.actionLight_mode.triggered.connect(self.change_light_mode)
         self.actionAuto.triggered.connect(self.change_auto_mode)
@@ -294,6 +258,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 self.original_image = QImage(image.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
                 original_pixmap = QPixmap.fromImage(self.original_image)
                 self.original_label.setPixmap(original_pixmap.scaled(400, 400, Qt.AspectRatioMode.KeepAspectRatio))
+                self.horizontalSlider.setValue(0)
     def display_images(self):
         if self.original_image is None:
             original_pixmap = QPixmap.fromImage(self.original_image)
@@ -320,11 +285,11 @@ class MainWindow(QtWidgets.QMainWindow):
             progress_dialog.setWindowTitle("Bildorientierung korrigieren")
             progress_dialog.setLabelText("Bild verarbeiten...")
             progress_dialog.setCancelButtonText("Abbrechen")
+
             progress_dialog.setWindowModality(Qt.WindowModality.WindowModal)
             progress_dialog.setRange(0, 0)  # Indeterminate progress
             progress_dialog.show()
-
-            #QCoreApplication.processEvents()  # Allow the progress dialog to be displayed
+            
             # Start the rotation correction in a separate thread
             self.rotation_thread = CorrectRotationThread_main(self.filename, self.rotation_angle_orig,self.model)
             self.rotation_thread.started.connect(progress_dialog.show)
@@ -332,28 +297,18 @@ class MainWindow(QtWidgets.QMainWindow):
             self.rotation_thread.rotation_completed.connect(self.rotation_completed)
             self.rotation_thread.finished.connect(lambda: self.correct_rotation_button.setEnabled(True))
             self.rotation_thread.start()
-            #if self.model is None:
-            #    self.model = load_model('./model/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
-
-            
-            '''
-            predictions = self.model.predict(
-                RotNetDataGenerator(
-                    self.filename,
-                    input_shape=(224, 224, 3),
-                    batch_size=64,
-                    one_hot=True,
-                    preprocess_func=preprocess_input,
-                    rotate=True,
-                    crop_largest_rect=True,
-                    crop_center=True,
-                    angle=self.rotation_angle_orig
-                )
-            )
-            self.rotation_angle = np.argmax(predictions, axis=1) - self.rotation_angle_orig
-            '''
             progress_dialog.close()
     def rotation_completed(self):
+        self.rotation_angle = self.rotation_thread.rotation_angle
+        if self.rotation_angle > 180:
+            update_slider = self.rotation_angle - 360
+        elif self.rotation_angle < -180:
+            update_slider = self.rotation_angle + 360
+        else: 
+            update_slider = self.rotation_angle
+        if isinstance(update_slider,np.ndarray):
+            update_slider = update_slider[0]
+        self.horizontalSlider_2.setValue(update_slider)
         transform = QTransform()
         transform.rotate(self.rotation_thread.rotation_angle)
         self.rotated_image = self.original_image.transformed(transform)
@@ -361,29 +316,74 @@ class MainWindow(QtWidgets.QMainWindow):
         
     def load_model_thread(self):
         model_path = './model/efficientnetv2_sv_open_images.hdf5'  
-        #model_path = './rotnet_open_images_resnet50_TCML_2.hdf5'
         # Create a thread to load the model
         self.model_thread = LoadModelThread(model_path)
         self.model_thread.model_loaded.connect(self.model_loaded)
         self.model_thread.start()
     def model_loaded(self, model_location):
         self.model = model_location     
-            
-
     def rotate_image(self):
         if self.original_image is not None:
             transform = QTransform()
             transform.rotate(self.rotation_angle)
             self.rotated_image = self.original_image.transformed(transform)
             self.display_images()
+    def rotate_button_plus_orig(self):
+        self.rotation_angle_orig += 90
+        if self.rotation_angle_orig > 180:
+            update_slider = self.rotation_angle_orig - 360
+        elif self.rotation_angle_orig < -180:
+            update_slider = self.rotation_angle_orig + 360
+        else: 
+            update_slider = self.rotation_angle_orig
+        if isinstance(update_slider,np.ndarray):
+            update_slider = update_slider[0]
+        self.horizontalSlider.setValue(update_slider)
+        self.rotate_image_orig()
+    def rotate_button_minus_orig(self):
+        self.rotation_angle_orig -= 90
+        if self.rotation_angle_orig > 180:
+            update_slider = self.rotation_angle_orig - 360
+        elif self.rotation_angle_orig < -180:
+            update_slider = self.rotation_angle_orig + 360
+        else: 
+            update_slider = self.rotation_angle_orig
+        if isinstance(update_slider,np.ndarray):
+            update_slider = update_slider[0]
+        self.horizontalSlider.setValue(update_slider)
+        self.rotate_image_orig()
+
+    def rotate_button_plus(self):
+        self.rotation_angle += 90
+        if self.rotation_angle > 180:
+            update_slider = self.rotation_angle - 360
+        elif self.rotation_angle < -180:
+            update_slider = self.rotation_angle + 360
+        else: 
+            update_slider = self.rotation_angle
+        if isinstance(update_slider,np.ndarray):
+            update_slider = update_slider[0]
+        self.horizontalSlider_2.setValue(update_slider)
+        self.rotate_image()
+    def rotate_button_minus(self):
+        self.rotation_angle -= 90
+        if self.rotation_angle > 180:
+            update_slider = self.rotation_angle - 360
+        elif self.rotation_angle < -180:
+            update_slider = self.rotation_angle + 360
+        else: 
+            update_slider = self.rotation_angle
+        if isinstance(update_slider,np.ndarray):
+            update_slider = update_slider[0]
+        self.horizontalSlider_2.setValue(update_slider)
+        self.rotate_image()
+    
     def update_rotation(self, value):
         self.rotation_angle = value
         self.rotate_image()
-
     def update_rotation_orig(self, value):
         self.rotation_angle_orig = value
         self.rotate_image_orig()
-
     def rotate_image_orig(self):
         if self.original_image is not None:
             transform = QTransform()
@@ -393,7 +393,6 @@ class MainWindow(QtWidgets.QMainWindow):
     def autocorrect(self):
         window = Autocorrect(self)
         window.show()
-
     def save_rotated_image(self):
         if self.rotated_image is not None:
             dialog = Dialog(self)
@@ -403,7 +402,6 @@ class MainWindow(QtWidgets.QMainWindow):
                 file_dialog = QFileDialog()
                 file_dialog.setAcceptMode(QFileDialog.AcceptMode.AcceptSave)
                 file_dialog.setDefaultSuffix("png")
-                #file_dialog.setNameFilter("Images (*.png *.jpeg *.jpg *.bmp)")
                 if file_dialog.exec() == QFileDialog.DialogCode.Accepted:
                     filenames = file_dialog.selectedFiles()
                     if filenames:
@@ -415,10 +413,6 @@ class MainWindow(QtWidgets.QMainWindow):
                             else:
                                 a = self.rotation_angle[0]
                             height, width = image.shape[:2]
-                            if width < height:
-                                height = width
-                            else:
-                                width = height
                             image = rotate(image, -a)  
                             image = crop_largest_rectangle(image, a, height, width)
                             cv2.imwrite(filename,image)
@@ -428,7 +422,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
 qdarktheme.enable_hi_dpi()
 app = QtWidgets.QApplication(sys.argv)
-#app.setStyleSheet(dark_theme)
 qdarktheme.setup_theme("auto")
 window = MainWindow()
 window.show()
