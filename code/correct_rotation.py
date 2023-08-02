@@ -3,15 +3,7 @@ from __future__ import print_function, division
 import os
 import cv2
 import numpy as np
-#import argparse
-
 from keras.applications.imagenet_utils import preprocess_input
-#from keras.models import load_model
-
-#from utils import RotNetDataGenerator, crop_largest_rectangle, angle_error, rotate
-# utils code
-#from __future__ import 
-
 import math
 import cv2
 import numpy as np
