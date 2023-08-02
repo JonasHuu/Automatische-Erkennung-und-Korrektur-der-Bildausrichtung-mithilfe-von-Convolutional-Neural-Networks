@@ -55,3 +55,7 @@ This script has been used to create visual evaluations of a model using testdata
 #### download_unsplashed.py
 The script downloads 1000 random unsplash images from the .tsv file using 32 parallel processes. It then writes them into ./data/unsplashed_images/ <br>
 The images can be used for testing purposes
+#### detect_oblique_images.py
+This script detects all images in the folder './data/train', that are oblique and writes their IDs into a text file.
+#### remove_rotated_images.py
+This script prompts the user to enter the path to a text file containing image IDs and removes all those images. 
