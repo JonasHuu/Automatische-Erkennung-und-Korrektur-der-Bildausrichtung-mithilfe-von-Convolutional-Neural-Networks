@@ -187,7 +187,7 @@ class Autocorrect(QtWidgets.QMainWindow):
 
     def closeEvent(self, event):
         if hasattr(self, "rotation_thread") and self.rotation_thread.isRunning():
-            self.rotation_thread.stop()
+            self.rotation_thread.quit()
             self.rotation_thread.wait()
         event.accept()
 

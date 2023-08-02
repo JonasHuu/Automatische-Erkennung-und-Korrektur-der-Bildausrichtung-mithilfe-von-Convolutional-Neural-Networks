@@ -50,7 +50,7 @@
       <item>
        <widget class="QPushButton" name="file_button">
         <property name="text">
-         <string>Dateiein auswählen</string>
+         <string>Dateien auswählen</string>
         </property>
        </widget>
       </item>
