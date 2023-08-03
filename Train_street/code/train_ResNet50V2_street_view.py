@@ -34,8 +34,6 @@ if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 # load base model
-#model = load_model('./models/efficientnet_open_images.hdf5', custom_objects={'angle_error': angle_error})
-# load base model
 base_model = ResNet50V2(weights='imagenet', include_top=False,
                       input_shape=input_shape)
 # append classification layer
