@@ -14,9 +14,9 @@ The usage of them will be explained below.
 * python ./code/train_EfficientnetV2_street_view.py
 ### Train EfficientnetV2 with Open Images
 * cd Train_OI
-#### Download test and train images using 25 processes -> lower/larger number may be used depending on your hardware
-* python ./code/downloader.py ./code/train.txt --download_folder=./data/train --num_processes=25
-* python ./code/downloader.py ./code/validate.txt --download_folder=./data/train --num_processes=25
+#### Download test and train images using 50 processes -> lower/larger number may be used depending on your hardware
+* python ./code/downloader.py ./code/train.txt --download_folder=./data/train --num_processes=50
+* python ./code/downloader.py ./code/validate.txt --download_folder=./data/validate --num_processes=50
 #### Start the training
 * python ./code/train_efficientnetV2_open_images.py
 
