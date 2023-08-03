@@ -3,8 +3,8 @@ import os
 import sys
 import random
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard, ReduceLROnPlateau
-#from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2B0
-#from keras.applications.imagenet_utils import preprocess_input
+from keras.applications.densenet import preprocess_input
+from keras.models import load_model
 from keras.models import Model
 from keras.layers import Dense, Flatten
 from keras.optimizers import SGD
@@ -19,9 +19,6 @@ prefix_validate = './data/validate/'
 train_filenames = [prefix_train + i for i in train_filenames]
 validation_filenames = [prefix_validate + i for i in validation_filenames]
 
-from keras.applications.densenet import preprocess_input
-from keras.models import load_model
-
 model_name = 'DenseNet201_sv_open_images'
 # training parameters
 batch_size = 64
@@ -34,13 +31,6 @@ if not os.path.exists(output_folder):
 
 # load base model
 model = load_model('./models_sv/DenseNet201_street_view.hdf5', custom_objects={'angle_error': angle_error})
-# append classification layer
-#x = base_model.output
-#x = Flatten()(x)
-#final_output = Dense(360, activation='softmax', name='fc360')(x)
-
-# create the new model
-#model = Model(inputs=base_model.input, outputs=final_output)
 
 model.summary()
 # model compilation
