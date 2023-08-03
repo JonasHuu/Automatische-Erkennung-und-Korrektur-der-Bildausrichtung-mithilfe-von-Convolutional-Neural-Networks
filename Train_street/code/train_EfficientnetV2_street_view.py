@@ -11,13 +11,6 @@ from keras.optimizers import SGD
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from utils import angle_error, RotNetDataGenerator
-
-#train_filenames = os.listdir('./data/train')
-#validation_filenames = os.listdir('./data/validate')
-#prefix_train = './data/train/'
-#prefix_validate = './data/validate/'
-#train_filenames = [prefix_train + i for i in train_filenames]
-#validation_filenames = [prefix_validate + i for i in validation_filenames]
 from data.street_view import get_filenames as get_street_view_filenames
 
 
