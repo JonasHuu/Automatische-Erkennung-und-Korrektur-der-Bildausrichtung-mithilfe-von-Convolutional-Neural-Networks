@@ -19,6 +19,7 @@ The usage of them will be explained below.
 * python ./code/downloader.py ./code/validate.txt --download_folder=./data/validate --num_processes=50
 #### Start the training
 * Copy efficientnetv2_street_view.hdf5 to ./models
+* The model can be downloaded using this link: https://drive.google.com/file/d/1q_pfYORJG_jsozsPf9a-v0l74quHa6hN/view?usp=sharing
 * python ./code/train_efficientnetV2_open_images.py
 
 ### Download pretrained EfficientnetV2
