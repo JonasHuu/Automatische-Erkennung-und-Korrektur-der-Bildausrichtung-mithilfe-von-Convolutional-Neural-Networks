@@ -34,11 +34,6 @@ The usage of them will be explained below.
 your output files names to start with:
 * python .\code\test_model.py -m './models/efficientnetv2_sv_open_images.hdf5' -t '/path/to/test/images' -n test_num -o 'EfficientnetV2_sv_oi_hc'
 
-## Use the app 
-* copy efficientnetv2_sv_open_images.hdf5 to ./app/model
-* cd ./app
-* python ./GUI.py
-
 ## Use the Image Editor app
 * copy efficientnetv2_sv_open_images.hdf5 to ./ImageEditor/model
 * cd ./ImageEditor
