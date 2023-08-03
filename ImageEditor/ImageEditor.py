@@ -6,7 +6,6 @@ import cv2
 from model.correct_rotation import *
 from keras.models import load_model
 from PyQt6.QtCore import Qt, QThread, pyqtSignal
-from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import (
     QApplication,
     QFileDialog,
@@ -182,7 +181,7 @@ class Autocorrect(QtWidgets.QMainWindow):
         # Reset the selected files and output folder
         self.selected_files = []
         self.output_folder = ""
-        self.file_label.setText("Keine Dateien ausgewählt")
+        self.file_label.setText("Keine Dateien oder Ordner ausgewählt")
         self.output_folder_label.setText("Kein Ausgabeordner ausgewählt")
 
     def closeEvent(self, event):
@@ -216,17 +215,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.save_button.clicked.connect(self.save_rotated_image)
         self.horizontalSlider_2.valueChanged.connect(self.update_rotation)
         self.horizontalSlider.valueChanged.connect(self.update_rotation_orig)
-
         self.plusButton_2.clicked.connect(self.rotate_button_plus_orig)
         self.minusButton_2.clicked.connect(self.rotate_button_minus_orig)
-
         self.plusButton.clicked.connect(self.rotate_button_plus)
         self.minusButton.clicked.connect(self.rotate_button_minus)
-
         self.actionDark_mode.triggered.connect(self.change_dark_mode)
         self.actionLight_mode.triggered.connect(self.change_light_mode)
         self.actionAuto.triggered.connect(self.change_auto_mode)
-        #self.correct_rotation_button.clicked.connect(self.start_rotation_correction)
+
         # Initialize variables
         self.original_image = None
         self.rotated_image = None
@@ -267,7 +263,7 @@ class MainWindow(QtWidgets.QMainWindow):
             rotated_pixmap = QPixmap.fromImage(self.rotated_image)
             self.rotated_label.setPixmap(rotated_pixmap.scaled(400, 400, Qt.AspectRatioMode.KeepAspectRatio))
     def convertQImageToMat(incomingImage):
-        '''  Converts a QImage into an opencv MAT format  '''
+        #Convert a QImage into an opencv MAT format
 
         incomingImage = incomingImage.convertToFormat(4)
 
@@ -308,6 +304,7 @@ class MainWindow(QtWidgets.QMainWindow):
             update_slider = self.rotation_angle
         if isinstance(update_slider,np.ndarray):
             update_slider = update_slider[0]
+        # update slider
         self.horizontalSlider_2.setValue(update_slider)
         transform = QTransform()
         transform.rotate(self.rotation_thread.rotation_angle)
