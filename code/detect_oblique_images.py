@@ -10,12 +10,6 @@ from keras.applications.imagenet_utils import preprocess_input
 from correct_rotation import RotNetDataGenerator
 def evaluate_predictions(model, input, num_images=5, size=(224, 224), crop_center=True,
                      crop_largest_rect=True, preprocess_func=preprocess_input, save_path=None):
-    """
-    Given a model that predicts the rotation angle of an image,
-    and a NumPy array of images or a list of image paths, display
-    the specified number of example images in three columns:
-    Original, Rotated and Corrected.
-    """
     predictions = model.predict(
         RotNetDataGenerator(
             input,
