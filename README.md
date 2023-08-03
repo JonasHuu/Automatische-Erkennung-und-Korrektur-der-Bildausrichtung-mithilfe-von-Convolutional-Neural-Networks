@@ -18,6 +18,7 @@ The usage of them will be explained below.
 * python ./code/downloader.py ./code/train.txt --download_folder=./data/train --num_processes=50
 * python ./code/downloader.py ./code/validate.txt --download_folder=./data/validate --num_processes=50
 #### Start the training
+* Copy efficientnetv2_street_view.hdf5 to ./models
 * python ./code/train_efficientnetV2_open_images.py
 
 ### Download pretrained EfficientnetV2
