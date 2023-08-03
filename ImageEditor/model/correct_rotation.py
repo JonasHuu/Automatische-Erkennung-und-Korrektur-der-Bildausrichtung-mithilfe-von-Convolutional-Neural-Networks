@@ -3,20 +3,11 @@ from __future__ import print_function, division
 import os
 import cv2
 import numpy as np
-#import argparse
-
 from keras.applications.imagenet_utils import preprocess_input
-#from keras.models import load_model
-
-#from utils import RotNetDataGenerator, crop_largest_rectangle, angle_error, rotate
-# utils code
-#from __future__ import 
-
 import math
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
 from keras.preprocessing.image import Iterator
 from keras.utils.np_utils import to_categorical
 import keras.backend as K
@@ -509,27 +500,3 @@ def process_images(model, input_path, output_path,
         if not output_is_image:
             output_filename = os.path.join(output_path ,os.path.basename(path))
         cv2.imwrite(output_filename, rotated_image)
-
-'''
-if __name__ == '__main__':
-    #parser = argparse.ArgumentParser()
-    #parser.add_argument('-m', help='Path to model')
-    #parser.add_argument('-i', help='Path to image or directory')
-    #parser.add_argument('-o', '--output_path', help='Output directory')
-    #parser.add_argument('-b', '--batch_size', help='Batch size for running the network')
-    #parser.add_argument('-c', '--crop', dest='crop', default=False, action='store_true',
-    #                    help='Crop out black borders after rotating')
-    #args = parser.parse_args()
-    root = tk.Tk()
-    root.withdraw()
-    file_path = list(filedialog.askopenfilenames())
-    save_path = filedialog.askdirectory()
-    print(file_path)
-    print('Loading model...')
-    model_location = load_model('../models/efficientnetv2_sv_open_images.hdf5', custom_objects={'angle_error': angle_error})
-    output_path = save_path
-    batch_size = 64
-    print('Processsing input image(s)...')
-    process_images(model_location, file_path, output_path,
-                   batch_size, True)
-'''
