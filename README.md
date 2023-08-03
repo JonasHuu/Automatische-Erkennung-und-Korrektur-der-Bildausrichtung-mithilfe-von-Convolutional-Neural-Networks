@@ -48,14 +48,14 @@ After the download is done, it needs to be extracted. The executable is called
 Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it from anywhere.
 ## Further scripts
 #### csv_to_txt.py
-Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
+* Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
 can use it to download the images by ID. The paths are hardcoded.
 #### create_tests.py
-This script has been used to create visual evaluations of a model using testdata. In order to use it for own purposes one needs to modify the paths used in the script.
+* This script has been used to create visual evaluations of a model using testdata. In order to use it for own purposes one needs to modify the paths used in the script.
 #### download_unsplashed.py
-The script downloads 1000 random unsplash images from the .tsv file using 32 parallel processes. It then writes them into ./data/unsplashed_images/ <br>
+* The script downloads 1000 random unsplash images from the .tsv file using 32 parallel processes. It then writes them into ./data/unsplashed_images/ <br>
 The images can be used for testing purposes
 #### detect_oblique_images.py
-This script detects all images in the folder './data/train', that are oblique and writes their IDs into a text file.
+* This script detects all images in the folder './data/train', that are oblique and writes their IDs into a text file.
 #### remove_rotated_images.py
-This script prompts the user to enter the path to a text file containing image IDs and removes all of those images. 
+* This script prompts the user to enter the path to a text file containing image IDs and removes all of those images. 
