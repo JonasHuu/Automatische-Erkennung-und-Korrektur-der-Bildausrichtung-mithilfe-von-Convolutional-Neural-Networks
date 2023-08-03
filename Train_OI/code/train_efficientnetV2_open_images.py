@@ -33,15 +33,7 @@ if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 # load base model
-model = load_model('./models_sv/efficientnetv2_street_view.hdf5', custom_objects={'angle_error': angle_error})
-# append classification layer
-#x = base_model.output
-#x = Flatten()(x)
-#final_output = Dense(360, activation='softmax', name='fc360')(x)
-
-# create the new model
-#model = Model(inputs=base_model.input, outputs=final_output)
-
+model = load_model('./models/efficientnetv2_street_view.hdf5', custom_objects={'angle_error': angle_error})
 model.summary()
 # model compilation
 model.compile(loss='categorical_crossentropy',
