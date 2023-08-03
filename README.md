@@ -50,7 +50,7 @@ Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it 
 #### csv_to_txt.py
 * Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
 can use it to download the images by ID. The paths are hardcoded.
-#### create_tests.py
+#### visual_evaluation.py
 * This script has been used to create visual evaluations of a model using testdata. In order to use it for own purposes one needs to modify the paths used in the script.
 #### download_unsplashed.py
 * The script downloads 1000 random unsplash images from the .tsv file using 32 parallel processes. It then writes them into ./data/unsplashed_images/ <br>
