@@ -3,7 +3,8 @@ import os
 import sys
 import random
 from keras.callbacks import ModelCheckpoint, EarlyStopping, TensorBoard, ReduceLROnPlateau
-#from tensorflow.keras.applications.efficientnet_v2 import EfficientNetV2B0
+from keras.applications.imagenet_utils import preprocess_input
+from keras.models import load_model
 from keras.applications.imagenet_utils import preprocess_input
 from keras.models import Model
 from keras.layers import Dense, Flatten
@@ -18,9 +19,6 @@ prefix_train = './data/train/'
 prefix_validate = './data/validate/'
 train_filenames = [prefix_train + i for i in train_filenames]
 validation_filenames = [prefix_validate + i for i in validation_filenames]
-
-from keras.applications.imagenet_utils import preprocess_input
-from keras.models import load_model
 
 model_name = 'efficientnetv2_sv_open_images'
 # training parameters
