@@ -40,9 +40,8 @@ your output files names to start with:
 * python ImageEditor.py
 
 ## Download and use the Image Editor app as a .exe
-* https://drive.google.com/file/d/1_J3hMkuze-vwO_PJdbNMVXG58-bhiK9y/view?usp=sharing <br>
-After the download is done, it needs to be extracted. The executable is called
-Bilder drehen.exe. It is useful to create a shortcut for the .exe to execute it from anywhere.
+* https://drive.google.com/file/d/1QwOQh38SKznwh9v2xghUYGyjUeNok952/view?usp=sharing <br>
+After the download is done, one just needs to execute the installer and after it's done, the app can be run.
 ## Further scripts
 #### csv_to_txt.py
 * Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
