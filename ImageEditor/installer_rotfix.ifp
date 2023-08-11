@@ -1,0 +1,398 @@
+﻿
+[Header]
+ProjectFileVersion = 1.1
+[General]
+Program name = RotFix
+Program version = 1.0
+Windows XP = 0
+Windows Server 2003 = 1
+Windows Vista = 1
+Windows Server 2008 = 1
+Windows 7 = 1
+Windows 8 = 1
+Windows 10 = 1
+Windows Server 2016 = 1
+Windows Server 2019 = 1
+Windows Server 2022 = 1
+Windows 11 = 1
+DoNotCheckOS = 0
+Company name = BA_JH
+Website = https://
+SFA = 0
+DFA = 0
+Comp = 1
+[Graphics]
+Wizard image = <main>
+Header image = <main>
+Show Label = 1
+VisualStylesEnabled = 1
+[Files]
+Installation path = <ProgramFiles>\<Company>\<AppName>\
+Autcip = 1
+[Uninstall]
+Vwau = 0
+Website = https://
+Include uninstaller = 1
+Uninstaller filename = Uninstall
+UseCustomDisplayIcon = 0
+CustomDisplayIcon = <InstallPath>\
+[Licence]
+Licence dialog = 0
+[Finish]
+Sart program = 1
+Reboot computer = 0
+Program = <InstallPath>\RotFix.exe
+ProgramArguments = 
+[Shortcuts]
+Allowtc = 0
+Shortcut path = <Company>\<AppName>\
+[Serialoptions]
+Allows = 0
+Number = 1000
+Mask = #####-#####-#####-#####
+[SplashScreen]
+Image = 
+Sound = 
+Time = 2
+PlaySound = 0
+Allow = 0
+[Build]
+File = C:\Users\jonas\OneDrive - bwedu\Desktop\RotFixSetup.exe
+SetupIconPath = C:\Program Files (x86)\solicus\InstallForge\icons\modern.ico
+UninstallIconPath = C:\Program Files (x86)\solicus\InstallForge\icons\modern.ico
+CompressionMethod = 0
+CompressionLevel = 2
+[Updater]
+Allow = 0
+1 = <AppName>
+2 = <AppVersion>
+3 = http://
+4 = http://
+5 = http://
+6 = Update
+Language = 0
+RunProg = 
+RunProgs = 0
+Execdlls = 0
+[Languages]
+[Files/Dirs]
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_asyncio.pyd
+63.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_bz2.pyd
+82.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_cffi_backend.cp311-win_amd64.pyd
+177.5 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_ctypes.pyd
+120.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_decimal.pyd
+247.3 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_elementtree.pyd
+125.3 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_hashlib.pyd
+63.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_lzma.pyd
+155.3 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_multiprocessing.pyd
+33.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_overlapped.pyd
+49.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_queue.pyd
+31.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_socket.pyd
+77.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_ssl.pyd
+157.3 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_tkinter.pyd
+62.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\_uuid.pyd
+24.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-console-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-datetime-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-debug-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-errorhandling-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-file-l1-1-0.dll
+22.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-file-l1-2-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-file-l2-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-handle-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-heap-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-interlocked-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-libraryloader-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-localization-l1-2-0.dll
+21.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-memory-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-namedpipe-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-processenvironment-l1-1-0.dll
+19.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-processthreads-l1-1-0.dll
+20.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-processthreads-l1-1-1.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-profile-l1-1-0.dll
+18.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-rtlsupport-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-string-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-synch-l1-1-0.dll
+20.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-synch-l1-2-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-sysinfo-l1-1-0.dll
+19.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-timezone-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-core-util-l1-1-0.dll
+18.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-conio-l1-1-0.dll
+19.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-convert-l1-1-0.dll
+22.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-environment-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-filesystem-l1-1-0.dll
+20.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-heap-l1-1-0.dll
+19.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-locale-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-math-l1-1-0.dll
+27.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-private-l1-1-0.dll
+69.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-process-l1-1-0.dll
+19.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-runtime-l1-1-0.dll
+23.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-stdio-l1-1-0.dll
+24.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-string-l1-1-0.dll
+24.9 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-time-l1-1-0.dll
+21.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\api-ms-win-crt-utility-l1-1-0.dll
+19.4 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\autocorrect_dialog.ui
+3.2 KB
+ui
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\base_library.zip
+1.7 MB
+zip
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\form.ui
+6.5 KB
+ui
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\libcrypto-1_1.dll
+3.3 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\libffi-8.dll
+38.8 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\libopenblas.FB5AE2TYXYH2IJRDKGDGQ3XBKLKTF43H.gfortran-win_amd64.dll
+34 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\libssl-1_1.dll
+688.3 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\pyexpat.pyd
+194.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\python3.dll
+65.8 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\python311.dll
+5.5 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\RotFix.exe
+31 MB
+exe
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\select.pyd
+29.8 KB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\tcl86t.dll
+1.8 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\tk86t.dll
+1.5 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\ucrtbase.dll
+1.1 MB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\unicodedata.pyd
+1.1 MB
+pyd
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\VCRUNTIME140.dll
+106.8 KB
+dll
+C:\Users\jonas\OneDrive - bwedu\Desktop\Uni\Semester6\Bachelorarbeit\GitHub\Bachelorarbeit-Jonas-Huurdeman\ImageEditor\dist\RotFix\VCRUNTIME140_1.dll
+48.4 KB
+dll
+C:\Program Files\RotFix\boto3\
+N/A
+[Folder]
+C:\Program Files\RotFix\botocore\
+N/A
+[Folder]
+C:\Program Files\RotFix\certifi\
+N/A
+[Folder]
+C:\Program Files\RotFix\charset_normalizer\
+N/A
+[Folder]
+C:\Program Files\RotFix\contourpy\
+N/A
+[Folder]
+C:\Program Files\RotFix\cv2\
+N/A
+[Folder]
+C:\Program Files\RotFix\google\
+N/A
+[Folder]
+C:\Program Files\RotFix\grpc\
+N/A
+[Folder]
+C:\Program Files\RotFix\h5py\
+N/A
+[Folder]
+C:\Program Files\RotFix\kiwisolver\
+N/A
+[Folder]
+C:\Program Files\RotFix\matplotlib\
+N/A
+[Folder]
+C:\Program Files\RotFix\matplotlib.libs\
+N/A
+[Folder]
+C:\Program Files\RotFix\ml_dtypes\
+N/A
+[Folder]
+C:\Program Files\RotFix\model\
+N/A
+[Folder]
+C:\Program Files\RotFix\numpy\
+N/A
+[Folder]
+C:\Program Files\RotFix\PIL\
+N/A
+[Folder]
+C:\Program Files\RotFix\PyQt6\
+N/A
+[Folder]
+C:\Program Files\RotFix\scipy\
+N/A
+[Folder]
+C:\Program Files\RotFix\scipy.libs\
+N/A
+[Folder]
+C:\Program Files\RotFix\setuptools-65.5.0.dist-info\
+N/A
+[Folder]
+C:\Program Files\RotFix\tcl\
+N/A
+[Folder]
+C:\Program Files\RotFix\tcl8\
+N/A
+[Folder]
+C:\Program Files\RotFix\tensorflow\
+N/A
+[Folder]
+C:\Program Files\RotFix\tk\
+N/A
+[Folder]
+C:\Program Files\RotFix\wheel-0.40.0.dist-info\
+N/A
+[Folder]
+C:\Program Files\RotFix\wrapt\
+N/A
+[Folder]
+[Licence_Begin]
+155
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1031{\fonttbl{\f0\fnil Arial;}}
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\f0\fs20\par
+}
+ [Licence_End]
+[Registry]
+[Variables]
+[SCs]
+Desktop
+RotFix
+<InstallPath>\RotFix.exe
+
+
+0
+Startmenu
+RotFix
+<InstallPath>\RotFix.exe
+
+
+0
+[IFP_End]
+[Serials]
+[Serials_End]
+[Commands]
