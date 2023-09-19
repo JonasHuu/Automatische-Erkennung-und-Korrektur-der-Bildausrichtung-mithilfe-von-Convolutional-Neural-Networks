@@ -47,6 +47,8 @@ your output files names to start with: `python .\code\test_model.py -m './models
 ## Download and use the Image Editor app as a .exe
 * https://drive.google.com/file/d/1QwOQh38SKznwh9v2xghUYGyjUeNok952/view?usp=sharing <br>
 After the download is done, one just needs to execute the installer, and after it's done, the app can be run.
+If the download doesn't work, then here is the .exe in a zipped format:
+* https://drive.google.com/file/d/13YZfGALaMkbqzVVSfxGHnz_PPOX-dmTD/view?usp=sharing
 ## Further scripts
 #### csv_to_txt.py
 * Given the file 'train-images-boxable-with-rotation.csv', it extracts the ImageID and Subset and writes those in a .txt file so the downloader.py script
